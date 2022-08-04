@@ -6,6 +6,8 @@ const morgan = require('morgan')
 
 const colors = require('colors')
 
+const uploadPhoto = require('express-fileupload')
+
 const errorHandler = require('./middleware/error')
 const connectDB = require('./config/db')
 
@@ -28,6 +30,8 @@ app.use(express.json())
 if(process.env.NODE_ENV=='development'){
     app.use(morgan('dev'));
 }
+//upload file
+app.use(uploadPhoto());
 
 //mount routers
 app.use('/api/v1/bootcamp', bootcamp)
