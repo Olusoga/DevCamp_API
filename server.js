@@ -21,6 +21,7 @@ connectDB()
 //Routes files
 const bootcamp = require('./routes/bootcamp');
 const course = require('./routes/Course')
+const auth = require('./routes/auth')
 const app = express();
 
 //Body Parser
@@ -36,6 +37,7 @@ app.use(uploadPhoto());
 //mount routers
 app.use('/api/v1/bootcamp', bootcamp)
 app.use('/api/v1/Course', course)
+app.use('/api/v1/auth', auth)
 //error handler
 app.use(errorHandler)
 const PORT = process.env.PORT || 5000
