@@ -18,6 +18,8 @@ exports.register = asyncHandler(async (req, res, next)=>{
         password,
         role
     })
+
+    
     //create token
 
     const token = user.getSignedJwtToken();
@@ -57,4 +59,15 @@ if(!isMatch){
     res.status(200).json({success:true, token});
 }
 
+})
+//@desc   get present loggedIn User
+//@route Get api/v1/auth/me
+//@access private
+
+exports.getMe = asyncHandler(async(req, res, next)=>{
+    const user = await User.findById(req.user.id)
+    res.status(200).json({
+        success:true,
+        data:user
+    })
 })
